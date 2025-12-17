@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://seosentinel.online/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /dashboard/
+# Allow result pages for Programmatic SEO indexation
+Allow: /result/
+
+# Allow important pages
+Allow: /
+Allow: /blog
+Allow: /about
+Allow: /contact
+Allow: /login
+Allow: /signup
+Allow: /legal/
+
+# Crawl delay
+Crawl-delay: 1

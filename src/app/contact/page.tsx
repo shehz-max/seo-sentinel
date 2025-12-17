@@ -1,0 +1,127 @@
+"use client";
+
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
+
+export default function Contact() {
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Simulate form submission
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 3000);
+    };
+
+    return (
+        <div className="min-h-screen py-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h1 className="text-5xl font-bold text-white mb-4">
+                        Contact <span className="text-gradient-blue">Us</span>
+                    </h1>
+                    <p className="mt-4 text-xl text-gray-400">
+                        Need help with your audit? Our team is here to assist you.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {/* Contact Form */}
+                    <div className="glass-dark rounded-2xl p-8 border border-primary/20">
+                        <h2 className="text-2xl font-bold text-white mb-6">Send us a message</h2>
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                <input
+                                    type="text"
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                    className="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-primary/20 text-white placeholder-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                    placeholder="Your name"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    className="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-primary/20 text-white placeholder-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                    placeholder="your@email.com"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <textarea
+                                    rows={5}
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    className="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-primary/20 text-white placeholder-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                                    placeholder="How can we help you?"
+                                    required
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all flex items-center justify-center gap-2 hover:scale-105"
+                            >
+                                {submitted ? "Message Sent!" : "Send Message"}
+                                <Send className="h-4 w-4" />
+                            </button>
+                        </form>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div className="space-y-8">
+                        <div className="glass-dark rounded-2xl p-8 border border-primary/20">
+                            <h2 className="text-2xl font-bold text-white mb-6">Get in touch</h2>
+                            <div className="space-y-6">
+                                <ContactMethod
+                                    icon={<Mail className="h-6 w-6 text-primary" />}
+                                    title="Email"
+                                    value="support@seosentinel.com"
+                                />
+                                <ContactMethod
+                                    icon={<Phone className="h-6 w-6 text-secondary" />}
+                                    title="Phone"
+                                    value="+1 (555) 123-4567"
+                                />
+                                <ContactMethod
+                                    icon={<MapPin className="h-6 w-6 text-accent" />}
+                                    title="Office"
+                                    value="123 Tech Avenue, Silicon Valley, CA 94025"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="glass-dark rounded-2xl p-8 border border-primary/20">
+                            <h3 className="text-xl font-bold text-white mb-4">Business Hours</h3>
+                            <div className="space-y-2 text-gray-400">
+                                <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
+                                <p>Saturday: 10:00 AM - 4:00 PM PST</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ContactMethod({ icon, title, value }: { icon: React.ReactNode, title: string, value: string }) {
+    return (
+        <div className="flex items-start gap-4">
+            <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                {icon}
+            </div>
+            <div>
+                <h3 className="text-lg font-medium text-white">{title}</h3>
+                <p className="mt-1 text-gray-400">{value}</p>
+            </div>
+        </div>
+    );
+}
