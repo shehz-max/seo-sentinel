@@ -3,15 +3,33 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 export default function Contact() {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Simulate form submission
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 3000);
+        setLoading(true);
+
+        try {
+            if (db) {
+                await addDoc(collection(db, "messages"), {
+                    ...formData,
+                    timestamp: serverTimestamp()
+                });
+                setSubmitted(true);
+                setFormData({ name: "", email: "", message: "" });
+                setTimeout(() => setSubmitted(false), 5000);
+            }
+        } catch (err) {
+            console.error("Failed to send message", err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -66,9 +84,10 @@ export default function Contact() {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all flex items-center justify-center gap-2 hover:scale-105"
+                                disabled={loading}
+                                className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg hover:shadow-primary/50 transition-all flex items-center justify-center gap-2 hover:scale-105 disabled:opacity-50"
                             >
-                                {submitted ? "Message Sent!" : "Send Message"}
+                                {loading ? "Sending..." : submitted ? "Message Sent!" : "Send Message"}
                                 <Send className="h-4 w-4" />
                             </button>
                         </form>

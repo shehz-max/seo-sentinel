@@ -1,11 +1,17 @@
-"use client";
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, User, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+
+interface UserData {
+    credits: number;
+    plan: string;
+    totalChecks: number;
+}
 
 interface AuthContextType {
     user: User | null;
+    userData: UserData | null;
     loading: boolean;
     loginWithGoogle: () => Promise<void>;
     logout: () => Promise<void>;
@@ -13,6 +19,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
+    userData: null,
     loading: true,
     loginWithGoogle: async () => { },
     logout: async () => { },
@@ -20,6 +27,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
+    const [userData, setUserData] = useState<UserData | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -28,18 +36,47 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             return;
         }
 
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            setLoading(false);
+        let unsubDoc: (() => void) | null = null;
+
+        const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
+            // Clean up old listener if exists
+            if (unsubDoc) {
+                unsubDoc();
+                unsubDoc = null;
+            }
+
+            setUser(firebaseUser);
+
+            if (firebaseUser && db) {
+                const userDocRef = doc(db, "users", firebaseUser.uid);
+
+                const userDoc = await getDoc(userDocRef);
+                if (!userDoc.exists()) {
+                    const initialData = { credits: 10, plan: "Free", totalChecks: 0 };
+                    await setDoc(userDocRef, initialData);
+                    setUserData(initialData);
+                }
+
+                unsubDoc = onSnapshot(userDocRef, (doc) => {
+                    if (doc.exists()) {
+                        setUserData(doc.data() as UserData);
+                    }
+                });
+                setLoading(false);
+            } else {
+                setUserData(null);
+                setLoading(false);
+            }
         });
-        return () => unsubscribe();
+
+        return () => {
+            unsubscribeAuth();
+            if (unsubDoc) unsubDoc();
+        };
     }, []);
 
     const loginWithGoogle = async () => {
-        if (!auth) {
-            console.error("Firebase auth not initialized");
-            return;
-        }
+        if (!auth) return;
         try {
             const provider = new GoogleAuthProvider();
             await signInWithPopup(auth, provider);
@@ -49,10 +86,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     const logout = async () => {
-        if (!auth) {
-            console.error("Firebase auth not initialized");
-            return;
-        }
+        if (!auth) return;
         try {
             await signOut(auth);
         } catch (error) {
@@ -61,7 +95,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, loginWithGoogle, logout }}>
+        <AuthContext.Provider value={{ user, userData, loading, loginWithGoogle, logout }}>
             {children}
         </AuthContext.Provider>
     );

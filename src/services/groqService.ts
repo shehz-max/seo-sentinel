@@ -42,12 +42,9 @@ export async function getAiInsight(domain: string, da: number, spamScore: number
 
         return chatCompletion.choices[0]?.message?.content || "Analysis complete.";
 
-    } catch (error: any) {
+    } catch (error) {
         console.error("Groq AI Error:", error);
-        // Provide more specific error if possible
-        if (error?.message) {
-            return `AI Analysis Unavailable: ${error.message}`;
-        }
-        return "AI Analysis failed temporarily. Please check your API key.";
+        const errorMessage = error instanceof Error ? error.message : "Analysis failed temporarily.";
+        return `AI Analysis Unavailable: ${errorMessage} (Check API Key)`;
     }
 }

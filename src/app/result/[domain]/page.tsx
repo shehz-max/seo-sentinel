@@ -6,20 +6,22 @@ type Props = {
 }
 
 export async function generateMetadata(
-    { params }: Props,
+    { params }: { params: Promise<{ domain: string }> },
 ): Promise<Metadata> {
-    const domain = decodeURIComponent(params.domain);
+    const { domain } = await params;
+    const decodedDomain = decodeURIComponent(domain);
 
     return {
-        title: `Check ${domain} Spam Score & DA - Free SEO Analysis`,
-        description: `Is ${domain} safe? Check its Website Spam Score, Domain Authority (DA), and toxicity signals instantly. Free AI-powered audit.`,
+        title: `Check ${decodedDomain} Spam Score & DA - Free SEO Analysis`,
+        description: `Is ${decodedDomain} safe? Check its Website Spam Score, Domain Authority (DA), and toxicity signals instantly. Free AI-powered audit.`,
         alternates: {
-            canonical: `/result/${params.domain}`
+            canonical: `/result/${domain}`
         }
     }
 }
 
-export default function ResultPage({ params }: Props) {
-    const domain = decodeURIComponent(params.domain);
-    return <ResultClient domain={domain} />;
+export default async function ResultPage({ params }: { params: Promise<{ domain: string }> }) {
+    const { domain } = await params;
+    const decodedDomain = decodeURIComponent(domain);
+    return <ResultClient domain={decodedDomain} />;
 }

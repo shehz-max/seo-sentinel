@@ -89,41 +89,43 @@ const BLOG_CONTENT: Record<string, { title: string; content: React.ReactNode; da
     }
 };
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-    const post = BLOG_CONTENT[params.slug];
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const post = BLOG_CONTENT[slug];
 
     if (!post) {
         return notFound();
     }
 
     return (
-        <article className="max-w-3xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-            <Link href="/blog" className="inline-flex items-center text-slate-500 hover:text-primary mb-8 transition-colors">
-                <ArrowLeft className="h-4 w-4 mr-2" /> Back to Resources
-            </Link>
+        <article className="min-h-screen pt-24 pb-20">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Link href="/blog" className="inline-flex items-center text-primary group mb-8 transition-all hover:translate-x-[-4px]">
+                    <ArrowLeft className="h-4 w-4 mr-2" /> Back to Resources
+                </Link>
 
-            <header className="mb-10">
-                <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
-                    <span className="inline-flex items-center text-primary font-medium">
-                        <Tag className="h-3 w-3 mr-1" />
+                <div className="mb-10 sm:mb-12">
+                    <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest text-primary bg-primary/10 rounded-lg uppercase mb-6 border border-primary/20">
                         {post.category}
                     </span>
-                    <span className="flex items-center">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        {post.date}
-                    </span>
-                    <span className="flex items-center">
-                        <User className="h-3 w-3 mr-1" />
-                        {post.author}
-                    </span>
-                </div>
-                <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white capitalize leading-tight">
-                    {post.title}
-                </h1>
-            </header>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-[1.2] mb-8">
+                        {post.title}
+                    </h1>
+                    <div className="flex items-center gap-4 text-xs sm:text-sm text-slate-500 mb-10 pb-10 border-b border-white/10">
+                        <div className="flex items-center">
+                            <Calendar className="h-4 w-4 mr-2" />
+                            {post.date}
+                        </div>
+                        <div className="flex items-center">
+                            <User className="h-4 w-4 mr-2" />
+                            {post.author}
+                        </div>
+                    </div>
 
-            <div className="prose dark:prose-invert prose-lg lg:prose-xl max-w-none prose-headings:font-bold prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-primary hover:prose-a:text-primary-dark prose-img:rounded-xl">
-                {post.content}
+                    <div className="prose dark:prose-invert prose-base sm:prose-lg lg:prose-xl max-w-none prose-headings:text-white prose-a:text-primary prose-strong:text-white prose-img:rounded-3xl">
+                        {post.content}
+                    </div>
+                </div>
             </div>
         </article>
     );

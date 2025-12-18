@@ -4,54 +4,57 @@ import { ShieldCheck, Twitter, Github, Linkedin } from "lucide-react";
 export default function Footer() {
     return (
         <footer className="bg-slate-950 border-t border-primary/20">
-            <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="flex items-center gap-2 mb-4 group">
-                            <ShieldCheck className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
-                            <span className="font-bold text-lg text-white">
-                                SEO<span className="text-primary">Sentinel</span>
+            <div className="max-w-7xl mx-auto py-16 px-6 lg:px-8">
+                <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+                    <div className="col-span-2 lg:col-span-2">
+                        <Link href="/" className="flex items-center gap-2 mb-6 group">
+                            <ShieldCheck className="h-7 w-7 text-primary group-hover:scale-110 transition-transform" />
+                            <span className="font-bold text-xl text-white tracking-tight">
+                                SEO <span className="text-primary">Sentinel</span>
                             </span>
                         </Link>
-                        <p className="text-sm text-gray-400">
-                            Authentic SEO analysis powered by real-time data and advanced AI. Shield your site from spam penalties.
+                        <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
+                            Protecting your search rankings with real-time signal auditing and advanced AI metrics.
                         </p>
-                        <div className="flex space-x-4 mt-6">
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></a>
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Github className="h-5 w-5" /></a>
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Linkedin className="h-5 w-5" /></a>
+                        <div className="flex space-x-6 mt-8">
+                            <a href="#" aria-label="Twitter" className="text-gray-500 hover:text-white transition-colors"><Twitter className="h-5 w-5" /></a>
+                            <a href="#" aria-label="GitHub" className="text-gray-500 hover:text-white transition-colors"><Github className="h-5 w-5" /></a>
+                            <a href="#" aria-label="LinkedIn" className="text-gray-500 hover:text-white transition-colors"><Linkedin className="h-5 w-5" /></a>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 className="text-sm font-semibold text-white tracking-wider uppercase">Product</h3>
-                        <ul className="mt-4 space-y-4">
-                            <li><Link href="/" className="text-base text-gray-400 hover:text-primary transition-colors">Tool</Link></li>
-                            <li><Link href="/blog" className="text-base text-gray-400 hover:text-primary transition-colors">Blog</Link></li>
+                    <div className="col-span-1">
+                        <h3 className="text-[10px] font-bold text-white tracking-widest uppercase mb-6 opacity-50">Product</h3>
+                        <ul className="space-y-4">
+                            <li><Link href="/" className="text-sm text-gray-400 hover:text-primary transition-colors">Analyzer</Link></li>
+                            <li><Link href="/blog" className="text-sm text-gray-400 hover:text-primary transition-colors">Resources</Link></li>
                         </ul>
                     </div>
 
-                    <div>
-                        <h3 className="text-sm font-semibold text-white tracking-wider uppercase">Resources</h3>
-                        <ul className="mt-4 space-y-4">
-                            <li><Link href="/about" className="text-base text-gray-400 hover:text-primary transition-colors">About Us</Link></li>
-                            <li><Link href="/contact" className="text-base text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
+                    <div className="col-span-1">
+                        <h3 className="text-[10px] font-bold text-white tracking-widest uppercase mb-6 opacity-50">Company</h3>
+                        <ul className="space-y-4">
+                            <li><Link href="/about" className="text-sm text-gray-400 hover:text-primary transition-colors">About</Link></li>
+                            <li><Link href="/contact" className="text-sm text-gray-400 hover:text-primary transition-colors">Support</Link></li>
                         </ul>
                     </div>
 
-                    <div>
-                        <h3 className="text-sm font-semibold text-white tracking-wider uppercase">Legal</h3>
-                        <ul className="mt-4 space-y-4">
-                            <li><Link href="/legal/privacy" className="text-base text-gray-400 hover:text-primary transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="/legal/terms" className="text-base text-gray-400 hover:text-primary transition-colors">Terms of Service</Link></li>
-                            <li><Link href="/legal/cookies" className="text-base text-gray-400 hover:text-primary transition-colors">Cookie Policy</Link></li>
+                    <div className="col-span-1 lg:col-span-1">
+                        <h3 className="text-[10px] font-bold text-white tracking-widest uppercase mb-6 opacity-50">Legal</h3>
+                        <ul className="space-y-4">
+                            <li><Link href="/legal/privacy" className="text-sm text-gray-400 hover:text-primary transition-colors">Privacy</Link></li>
+                            <li><Link href="/legal/terms" className="text-sm text-gray-400 hover:text-primary transition-colors">Terms</Link></li>
                         </ul>
                     </div>
                 </div>
-                <div className="mt-8 border-t border-primary/20 pt-8 text-center">
-                    <p className="text-sm text-gray-500">
-                        &copy; {new Date().getFullYear()} SEO Sentinel. All rights reserved. Professional Website Spam Detection.
+
+                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                        &copy; {new Date().getFullYear()} SEO Sentinel. Crafted for Webmasters.
                     </p>
+                    <div className="flex gap-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                        <span>Status: Operational</span>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -35,17 +35,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://seosentinel.online',
-    title: 'SEO Sentinel - Free Website Spam Checker',
-    description: 'Check website spam score, Domain Authority, and SEO toxicity instantly with AI-powered analysis.',
+    title: 'SEO Sentinel - Website Spam Score Checker',
+    description: 'Protect your rankings. Detect toxic SEO signals and check Domain Authority instantly.',
     siteName: 'SEO Sentinel',
+    images: [{
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'SEO Sentinel Dashboard'
+    }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SEO Sentinel - Free Website Spam Checker',
-    description: 'Check website spam score and Domain Authority instantly.',
+    title: 'SEO Sentinel - Website Spam Score Checker',
+    description: 'Instantly check website spam score and Domain Authority.',
+    images: ['/og-image.png'],
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'G-SEO-SENTINEL-VERIFY-2025',
   },
 };
 
