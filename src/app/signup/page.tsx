@@ -4,9 +4,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function Signup() {
+function SignupContent() {
     const { user, loginWithGoogle, signupWithEmail } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -155,5 +155,13 @@ export default function Signup() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function Signup() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#020617] text-white">Loading Signup...</div>}>
+            <SignupContent />
+        </Suspense>
     );
 }
