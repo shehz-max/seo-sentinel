@@ -122,7 +122,15 @@ function SignupContent() {
                     </div>
 
                     <button
-                        onClick={() => loginWithGoogle()}
+                        onClick={async () => {
+                            setError(null);
+                            try {
+                                await loginWithGoogle();
+                            } catch (err: any) {
+                                console.error("Google Signup Error:", err);
+                                setError(err.message || "Google Sign-Up failed. Please try again.");
+                            }
+                        }}
                         className="group relative w-full flex justify-center items-center gap-3 py-3.5 border border-white/10 text-sm font-bold rounded-xl text-white bg-white/5 hover:bg-white/10 transition-all"
                     >
                         <svg className="h-5 w-5" viewBox="0 0 24 24">
