@@ -11,9 +11,8 @@ import { db } from "@/lib/firebase"; // Make sure firebase-admin is not used her
 import { doc, getDoc, updateDoc, increment, setDoc } from "firebase/firestore";
 
 // optimization for shared hosting
-export const config = {
-    maxDuration: 60, // 60 seconds max
-};
+// optimization for shared hosting
+export const maxDuration = 60; // 60 seconds max
 
 export async function POST(req: NextRequest) {
     try {
