@@ -50,7 +50,7 @@ export default function ResultClient({ domain }: { domain: string }) {
     }, [domain, user]);
 
     if (needsAuth) return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-950 p-6">
+        <div className="min-h-screen flex items-center justify-center p-6">
             <div className="max-w-md w-full glass-dark p-10 rounded-3xl border border-primary/30 text-center shadow-2xl">
                 <Shield className="h-16 w-16 text-primary mx-auto mb-6 animate-bounce" />
                 <h2 className="text-3xl font-bold text-white mb-4">Limit Reached!</h2>
@@ -70,7 +70,7 @@ export default function ResultClient({ domain }: { domain: string }) {
     );
 
     if (loading) return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950">
+        <div className="min-h-screen flex flex-col items-center justify-center">
             <div className="relative">
                 <div className="animate-spin rounded-full h-24 w-24 border-t-2 border-b-2 border-primary"></div>
                 <Shield className="h-8 w-8 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />

@@ -11,15 +11,22 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:123456789:web:abcdef",
 };
 
-// Initialize Firebase only in browser context to prevent build-time errors
-let app: FirebaseApp | undefined;
-let auth: Auth | undefined;
-let db: Firestore | undefined;
+// Initialize Firebase
+// We use a singleton pattern to prevent multiple initializations
+let app: FirebaseApp;
+let auth: Auth;
+let db: Firestore;
 
-if (typeof window !== "undefined") {
+try {
     app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-    auth = getAuth(app);
     db = getFirestore(app);
+
+    // Auth typically needs browser environment for persistence, but we initialize it safely
+    if (typeof window !== "undefined") {
+        auth = getAuth(app);
+    }
+} catch (error) {
+    console.error("Firebase Initialization Error:", error);
 }
 
-export { auth, db };
+export { app, auth, db };

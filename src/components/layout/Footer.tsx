@@ -10,17 +10,19 @@ export default function Footer() {
                         <Link href="/" className="flex items-center gap-2 mb-6 group">
                             <ShieldCheck className="h-7 w-7 text-primary group-hover:scale-110 transition-transform" />
                             <span className="font-bold text-xl text-white tracking-tight">
-                                SEO <span className="text-primary">Sentinel</span>
+                                Free <span className="text-primary">Spams Checker</span>
                             </span>
                         </Link>
                         <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
                             Protecting your search rankings with real-time signal auditing and advanced AI metrics.
                         </p>
-                        <div className="flex space-x-6 mt-8">
+                        {/* Social links removed until provided
+                         <div className="flex space-x-6 mt-8">
                             <a href="#" aria-label="Twitter" className="text-gray-500 hover:text-white transition-colors"><Twitter className="h-5 w-5" /></a>
                             <a href="#" aria-label="GitHub" className="text-gray-500 hover:text-white transition-colors"><Github className="h-5 w-5" /></a>
                             <a href="#" aria-label="LinkedIn" className="text-gray-500 hover:text-white transition-colors"><Linkedin className="h-5 w-5" /></a>
                         </div>
+                        */}
                     </div>
 
                     <div className="col-span-1">
@@ -50,7 +52,7 @@ export default function Footer() {
 
                 <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
                     <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                        &copy; {new Date().getFullYear()} SEO Sentinel. Crafted for Webmasters.
+                        &copy; {new Date().getFullYear()} Fast Website Spam Checker. Crafted for Webmasters.
                     </p>
                     <div className="flex gap-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                         <span>Status: Operational</span>

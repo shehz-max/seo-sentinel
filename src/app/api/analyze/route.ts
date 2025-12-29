@@ -14,18 +14,41 @@ export async function POST(req: NextRequest) {
 
         // --- Rate Limiting / Credit System ---
         const cookieStore = await cookies();
-        const guestChecks = cookieStore.get("guest_checks")?.value || "0";
+        const guestCookie = cookieStore.get("guest_checks")?.value;
+        const today = new Date().toISOString().split('T')[0];
+
+        let guestData = { count: 0, date: today };
+
+        try {
+            if (guestCookie) {
+                const parsed = JSON.parse(guestCookie);
+                // If it's a new day, reset count, otherwise use stored data
+                if (parsed.date === today) {
+                    guestData = parsed;
+                }
+            }
+        } catch (e) {
+            // Fallback for old cookie format (simple number) or invalid JSON
+            // Implicitly resets to 0 for new format
+        }
 
         if (!userId) {
-            if (parseInt(guestChecks) >= 1) {
+            if (guestData.count >= 5) {
                 return NextResponse.json({
-                    error: "Free limit reached.",
+                    error: "Daily limit reached (5/5). Sign up for unlimited checks!",
                     requiresLogin: true
                 }, { status: 403 });
             }
-            // Increment guest check cookie
-            cookieStore.set("guest_checks", (parseInt(guestChecks) + 1).toString(), { maxAge: 86400 });
+            // Increment guest check
+            guestData.count++;
+            cookieStore.set("guest_checks", JSON.stringify(guestData), { maxAge: 86400 });
+        } else {
+            // For authenticated users, verify limits via Firestore
+            // checkAndResetDailyLimits logic is handled in bulk route, 
+            // but for single checks we usually allow unlimited for auth users.
+            // We can just track usage here if needed.
         }
+        // --- End System ---
         // In a real prod environment, we would verify the userId via Firebase Admin SDK
         // and decrement credits in Firestore here. For now, we simulate the flow.
         // --- End System ---

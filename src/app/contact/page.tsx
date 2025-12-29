@@ -16,15 +16,24 @@ export default function Contact() {
         setLoading(true);
 
         try {
+            // 1. Save to Firebase (Existing)
             if (db) {
                 await addDoc(collection(db, "messages"), {
                     ...formData,
                     timestamp: serverTimestamp()
                 });
-                setSubmitted(true);
-                setFormData({ name: "", email: "", message: "" });
-                setTimeout(() => setSubmitted(false), 5000);
             }
+
+            // 2. Send Email (New)
+            await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            setSubmitted(true);
+            setFormData({ name: "", email: "", message: "" });
+            setTimeout(() => setSubmitted(false), 5000);
         } catch (err) {
             console.error("Failed to send message", err);
         } finally {

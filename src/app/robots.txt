@@ -4,4 +4,4 @@ Disallow: /dashboard
 Disallow: /login
 Disallow: /signup
 
-Sitemap: https://seosentinel.online/sitemap.xml
+Sitemap: https://fastwebsitespamchecker.com/sitemap.xml

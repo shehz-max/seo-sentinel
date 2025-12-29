@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://seosentinel.online'),
-  title: "SEO Sentinel - Free Website Spam Score Checker & DA Analysis",
-  description: "Check any website's Spam Score and Domain Authority (DA) instantly. free AI-powered SEO analysis, toxicity detection, and backlink audit tool.",
-  keywords: ["spam score checker", "check website spam", "domain authority checker", "da pa checker", "seo toxicity check", "google penalty checker", "website safety check"],
-  authors: [{ name: "SEO Sentinel" }],
-  creator: "SEO Sentinel",
-  publisher: "SEO Sentinel",
+  metadataBase: new URL('https://fastwebsitespamchecker.com'),
+  title: "Free Spams Checker - Free Spam Score & DA Analysis",
+  description: "Check any website's Spam Score and Domain Authority (DA) instantly. Free AI-powered SEO analysis, toxicity detection, and backlink audit tool.",
+  keywords: ["spam score checker", "free spams checker", "check website spam", "domain authority checker", "da pa checker", "seo toxicity check", "google penalty checker", "website safety check"],
+  authors: [{ name: "Free Spams Checker" }],
+  creator: "Free Spams Checker",
+  publisher: "Free Spams Checker",
   robots: {
     index: true,
     follow: true,
@@ -34,20 +34,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://seosentinel.online',
-    title: 'SEO Sentinel - Website Spam Score Checker',
+    url: 'https://fastwebsitespamchecker.com',
+    title: 'Free Spams Checker - Free Analysis',
     description: 'Protect your rankings. Detect toxic SEO signals and check Domain Authority instantly.',
-    siteName: 'SEO Sentinel',
+    siteName: 'Free Spams Checker',
     images: [{
       url: '/og-image.png',
       width: 1200,
       height: 630,
-      alt: 'SEO Sentinel Dashboard'
+      alt: 'Free Spams Checker Dashboard'
     }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SEO Sentinel - Website Spam Score Checker',
+    title: 'Free Spams Checker',
     description: 'Instantly check website spam score and Domain Authority.',
     images: ['/og-image.png'],
   },
@@ -79,7 +79,7 @@ export default function RootLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "SEO Sentinel",
+                "name": "Fast Website Spam Checker",
                 "applicationCategory": "SEO Tool",
                 "operatingSystem": "Web",
                 "offers": {

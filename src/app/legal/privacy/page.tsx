@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
                 <div className="space-y-8">
                     <Section title="Introduction">
                         <p className="text-gray-300 leading-relaxed">
-                            At SEO Sentinel, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website spam checking service.
+                            At Free Spams Checker, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website spam checking service.
                         </p>
                     </Section>
 
@@ -56,13 +56,13 @@ export default function PrivacyPolicy() {
 
                     <Section title="Your Rights">
                         <p className="text-gray-300 leading-relaxed">
-                            You have the right to access, update, or delete your personal information at any time. Contact us at support@seosentinel.com for any privacy-related requests.
+                            You have the right to access, update, or delete your personal information at any time. Contact us at support@fastwebsitespamchecker.com for any privacy-related requests.
                         </p>
                     </Section>
 
                     <Section title="Contact Us">
                         <p className="text-gray-300 leading-relaxed">
-                            If you have questions about this Privacy Policy, please contact us at support@seosentinel.com
+                            If you have questions about this Privacy Policy, please contact us at support@fastwebsitespamchecker.com
                         </p>
                     </Section>
                 </div>

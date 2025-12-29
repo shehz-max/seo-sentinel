@@ -78,9 +78,9 @@ export default function Dashboard() {
                                 {userData?.credits ?? "0"}
                             </h3>
                             <p className="text-gray-400 text-xs">Available for analysis</p>
-                            <div className="mt-6 pt-6 border-t border-white/5">
-                                <button className="w-full py-3 rounded-xl bg-primary/10 border border-primary/30 text-primary font-bold text-xs hover:bg-primary hover:text-white transition-all">
-                                    Top Up (Soon)
+                            <div className="mt-6 pt-6 border-t border-white/5 opacity-50 pointer-events-none grayscale">
+                                <button className="w-full py-3 rounded-xl bg-white/5 border border-white/5 text-gray-500 font-bold text-xs">
+                                    Top Up (Coming Soon)
                                 </button>
                             </div>
                         </div>
@@ -113,13 +113,13 @@ export default function Dashboard() {
                             </div>
                             <div className="glass-dark p-6 sm:p-8 rounded-2xl border border-white/5 flex items-center gap-6">
                                 <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                    <History className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" />
+                                    <CreditCard className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" />
                                 </div>
                                 <div>
                                     <p className="text-2xl sm:text-3xl font-bold text-white leading-none mb-1">
-                                        {Math.floor((userData?.totalChecks || 0) * 0.8)}
+                                        {userData?.credits || 0}
                                     </p>
-                                    <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Safe Found</p>
+                                    <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Credits Left</p>
                                 </div>
                             </div>
                         </div>
@@ -136,12 +136,12 @@ export default function Dashboard() {
                                 <div className="bg-white/5 h-16 w-16 sm:h-20 sm:w-20 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <Activity className="h-8 w-8 sm:h-10 sm:w-10 opacity-20" />
                                 </div>
-                                <h4 className="text-base sm:text-lg font-bold text-white mb-2">No audits yet</h4>
+                                <h4 className="text-base sm:text-lg font-bold text-white mb-2">History Tracking Coming Soon</h4>
                                 <p className="max-w-xs mx-auto text-xs sm:text-sm leading-relaxed text-gray-400">
-                                    Analyze your first domain to see detailed history and toxicity trends here.
+                                    We are building a comprehensive audit history system. Currently, your results are available immediately after scan.
                                 </p>
-                                <Link href="/" className="mt-8 inline-block px-8 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:scale-105 transition-all shadow-lg shadow-primary/30">
-                                    Start Scanning
+                                <Link href="/" className="mt-8 inline-block px-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm transition-all border border-white/10">
+                                    Start New Scan
                                 </Link>
                             </div>
                         </div>
