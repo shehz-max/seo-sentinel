@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldCheck, Twitter, Github, Linkedin } from "lucide-react";
+import { ShieldCheck, Twitter, Github, Linkedin, Facebook, Instagram, Mail } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -52,13 +52,31 @@ export default function Footer() {
 
                 <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
                     <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                        &copy; {new Date().getFullYear()} Fast Website Spam Checker. Crafted for Webmasters.
+                        &copy; {new Date().getFullYear()} Spams Checker. All rights reserved.
                     </p>
-                    <div className="flex gap-6 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                        <span>Status: Operational</span>
+                    <div className="flex gap-4">
+                        <SocialLink href="#" icon={<Twitter className="h-4 w-4" />} />
+                        <SocialLink href="#" icon={<Facebook className="h-4 w-4" />} />
+                        <SocialLink href="#" icon={<Instagram className="h-4 w-4" />} />
+                        <SocialLink href="mailto:hyspam6@gmail.com" icon={<Mail className="h-4 w-4" />} />
                     </div>
                 </div>
             </div>
         </footer>
+    );
+}
+
+function SocialLink({ href, icon }: { href: string, icon: React.ReactNode }) {
+    return (
+        <a
+            href={href}
+            className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 hover:border-primary/30 transition-all"
+        >
+            {icon}
+        </a>
+    );
+}
+            </div >
+        </footer >
     );
 }

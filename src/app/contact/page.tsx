@@ -107,7 +107,7 @@ export default function Contact() {
                         <div className="glass-dark rounded-2xl p-8 border border-primary/20">
                             <h2 className="text-2xl font-bold text-white mb-6">Get in touch</h2>
                             <div className="space-y-6">
-                                <a href="mailto:hyspam6@gmail.com" className="block hover:opacity-80 transition-opacity">
+                                <a href="mailto:hyspam6@gmail.com" className="block hover:opacity-80 transition-opacity bg-primary/10 rounded-lg p-2 border border-primary/20 -mx-2">
                                     <ContactMethod
                                         icon={<Mail className="h-6 w-6 text-primary" />}
                                         title="Email"

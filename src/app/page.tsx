@@ -50,7 +50,7 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
             <span className="text-gradient-blue whitespace-nowrap">Free Spams Score Checker</span>
             <br />
-            Check Website "Spams" Score & DA/PA Now
+            Check Website Spams Score & DA/PA
           </h1>
 
           <p className="mt-4 text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed px-2">

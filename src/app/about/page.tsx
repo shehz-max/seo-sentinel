@@ -43,7 +43,7 @@ export default function AboutPage() {
                                 We made this <strong>Website Spam Checker</strong> because we know the pain. We've seen websites drop in Google rankings from bad links you can't even spot. Sick of expensive tools that limit your checks, we built a free one powered by MOZ that just works.
                             </p>
                             <p className="text-gray-400 mt-4 leading-relaxed">
-                                Started by two SEO pros in 2024. Spent years cleaning spammy profiles for clients. Now, we share the tool that saved our projects—no fluff, just results.
+                                Spent years cleaning spammy profiles for clients. Now, we share the tool that saved our projects—no fluff, just results.
                             </p>
                         </div>
 
