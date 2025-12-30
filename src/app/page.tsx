@@ -20,19 +20,19 @@ export default function Home() {
 
     // If user is logged in, they are unlimited.
     if (user) {
-        router.push(`/result/${encodeURIComponent(domain)}`);
-        return;
+      router.push(`/result/${encodeURIComponent(domain)}`);
+      return;
     }
 
     // If guest, check limits
     if (hasGuestRemaining()) {
-        incrementGuestUsage();
-        router.push(`/result/${encodeURIComponent(domain)}`);
+      incrementGuestUsage();
+      router.push(`/result/${encodeURIComponent(domain)}`);
     } else {
-        // Limit reached -> Redirect to Signup with context
-        // We encode the return URL so they come back to results after signing up!
-        const returnUrl = `/result/${encodeURIComponent(domain)}`;
-        router.push(`/login?redirect=${encodeURIComponent(returnUrl)}`);
+      // Limit reached -> Redirect to Signup with context
+      // We encode the return URL so they come back to results after signing up!
+      const returnUrl = `/result/${encodeURIComponent(domain)}`;
+      router.push(`/login?redirect=${encodeURIComponent(returnUrl)}`);
     }
   };
 
@@ -48,13 +48,13 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
-            <span className="text-gradient-blue whitespace-nowrap">Free Spam Score Checker</span>
+            <span className="text-gradient-blue whitespace-nowrap">Free Spams Score Checker</span>
             <br />
-            Check Spam Score Now with MOZ
+            Check Website "Spams" Score & DA/PA Now
           </h1>
 
           <p className="mt-4 text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed px-2">
-            Use our free Moz spam score checker to instantly check <strong>spam score</strong>, <strong>website spam score</strong>, DA, PA, and toxic links. Spot risks fast.
+            Use our free Moz spam score checker to instantly check <strong>spams score</strong>, <strong>website spams score</strong>, DA, PA, and toxic links. Spot risks fast.
           </p>
 
           <form onSubmit={handleAnalyze} className="max-w-xl mx-auto mb-12 relative group px-2">
@@ -72,7 +72,7 @@ export default function Home() {
                 />
               </div>
               <button type="submit" className="bg-gradient-to-r from-primary to-primary-dark hover:scale-[1.02] active:scale-95 text-white px-8 py-3.5 sm:py-3 rounded-lg font-bold transition-all shadow-lg shadow-primary/30 flex items-center justify-center whitespace-nowrap">
-                Check Spam <ArrowRight className="ml-2 h-4 w-4" />
+                Check Spams <ArrowRight className="ml-2 h-4 w-4" />
               </button>
             </div>
           </form>
@@ -124,7 +124,7 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-slate-950/50" id="features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Why Check Spam Score With Us?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Features of Our "SpamsCheck" Tool</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">High spam score kills rankings—don't wait for Google penalties. Here's why 10K+ SEOs pick our tool:</p>
           </div>
 
@@ -176,7 +176,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-8 text-sm text-gray-500">
-              No credit card required • 1 Free daily scan
+              No credit card required • 3 Free daily scan
             </p>
           </div>
         </div>

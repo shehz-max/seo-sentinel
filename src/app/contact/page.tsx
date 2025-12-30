@@ -107,20 +107,17 @@ export default function Contact() {
                         <div className="glass-dark rounded-2xl p-8 border border-primary/20">
                             <h2 className="text-2xl font-bold text-white mb-6">Get in touch</h2>
                             <div className="space-y-6">
-                                <ContactMethod
-                                    icon={<Mail className="h-6 w-6 text-primary" />}
-                                    title="Email"
-                                    value="support@seosentinel.com"
-                                />
+                                <a href="mailto:hyspam6@gmail.com" className="block hover:opacity-80 transition-opacity">
+                                    <ContactMethod
+                                        icon={<Mail className="h-6 w-6 text-primary" />}
+                                        title="Email"
+                                        value="hyspam6@gmail.com"
+                                    />
+                                </a>
                                 <ContactMethod
                                     icon={<Phone className="h-6 w-6 text-secondary" />}
                                     title="Phone"
-                                    value="+1 (555) 123-4567"
-                                />
-                                <ContactMethod
-                                    icon={<MapPin className="h-6 w-6 text-accent" />}
-                                    title="Office"
-                                    value="123 Tech Avenue, Silicon Valley, CA 94025"
+                                    value="+92 (348) 4771574"
                                 />
                             </div>
                         </div>
@@ -128,9 +125,11 @@ export default function Contact() {
                         <div className="glass-dark rounded-2xl p-8 border border-primary/20">
                             <h3 className="text-xl font-bold text-white mb-4">Business Hours</h3>
                             <div className="space-y-2 text-gray-400">
-                                <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
-                                <p>Saturday: 10:00 AM - 4:00 PM PST</p>
-                                <p>Sunday: Closed</p>
+                                <p className="text-lg font-medium text-white flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                    24/7 Open
+                                </p>
+                                <p className="text-sm">We are always available to help you.</p>
                             </div>
                         </div>
                     </div>

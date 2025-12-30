@@ -22,9 +22,9 @@ export default function Navbar() {
     return (
         <nav
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
                 isScrolled
-                    ? "glass-dark shadow-lg shadow-black/20 border-b border-white/5"
+                    ? "glass-dark shadow-lg shadow-black/20 border-b border-white/5 backdrop-blur-md bg-slate-950/80"
                     : "bg-transparent border-transparent"
             )}
         >
@@ -49,10 +49,10 @@ export default function Navbar() {
 
                     <div className="hidden lg:block">
                         <div className="ml-10 flex items-baseline space-x-1">
-                            <Link href="/" className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-all">Tool</Link>
-                            <Link href="/blog" className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-all">Blogs</Link>
-                            <Link href="/about" className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-all">About</Link>
-                            <Link href="/contact" className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-all">Contact</Link>
+                            <Link href="/" className="px-4 py-2 rounded-lg text-sm font-bold text-gray-200 hover:text-white transition-all">Tool</Link>
+                            <Link href="/blog" className="px-4 py-2 rounded-lg text-sm font-bold text-gray-200 hover:text-white transition-all">Blogs</Link>
+                            <Link href="/about" className="px-4 py-2 rounded-lg text-sm font-bold text-gray-200 hover:text-white transition-all">About</Link>
+                            <Link href="/contact" className="px-4 py-2 rounded-lg text-sm font-bold text-gray-200 hover:text-white transition-all">Contact</Link>
 
                             {user ? (
                                 <div className="ml-4 flex items-center gap-3 pl-4 border-l border-white/10">
@@ -93,12 +93,12 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {isOpen && (
-                <div className="lg:hidden glass-dark border-t border-primary/20 absolute top-full left-0 right-0 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300">
+                <div className="lg:hidden glass-dark border-t border-primary/20 absolute top-full left-0 right-0 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 z-[100] bg-slate-950/95 backdrop-blur-xl">
                     <div className="px-4 pt-4 pb-6 space-y-2">
-                        <Link href="/" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-primary/20">Tool</Link>
-                        <Link href="/blog" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-primary/20">Blogs</Link>
-                        <Link href="/about" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-primary/20">About Us</Link>
-                        <Link href="/contact" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-primary/20">Contact</Link>
+                        <Link href="/" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-lg font-bold text-white hover:bg-white/10 border border-transparent hover:border-primary/20 transition-all">Tool</Link>
+                        <Link href="/blog" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-lg font-bold text-white hover:bg-white/10 border border-transparent hover:border-primary/20 transition-all">Blogs</Link>
+                        <Link href="/about" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-lg font-bold text-white hover:bg-white/10 border border-transparent hover:border-primary/20 transition-all">About Us</Link>
+                        <Link href="/contact" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-lg font-bold text-white hover:bg-white/10 border border-transparent hover:border-primary/20 transition-all">Contact</Link>
                         <div className="pt-4 mt-4 border-t border-white/10 flex flex-col gap-3">
                             {user ? (
                                 <>

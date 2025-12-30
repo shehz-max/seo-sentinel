@@ -28,8 +28,8 @@ export default function Footer() {
                     <div className="col-span-1">
                         <h3 className="text-[10px] font-bold text-white tracking-widest uppercase mb-6 opacity-50">Product</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/" className="text-sm text-gray-400 hover:text-primary transition-colors">Analyzer</Link></li>
-                            <li><Link href="/blog" className="text-sm text-gray-400 hover:text-primary transition-colors">Resources</Link></li>
+                            <li><Link href="/" className="text-sm text-gray-400 hover:text-primary transition-colors">Tool</Link></li>
+                            <li><Link href="/blog" className="text-sm text-gray-400 hover:text-primary transition-colors">Blogs</Link></li>
                         </ul>
                     </div>
 

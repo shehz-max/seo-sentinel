@@ -56,13 +56,13 @@ export default function PrivacyPolicy() {
 
                     <Section title="Your Rights">
                         <p className="text-gray-300 leading-relaxed">
-                            You have the right to access, update, or delete your personal information at any time. Contact us at support@fastwebsitespamchecker.com for any privacy-related requests.
+                            You have the right to access, update, or delete your personal information at any time. Contact us at hyspam6@gmail.com for any privacy-related requests.
                         </p>
                     </Section>
 
                     <Section title="Contact Us">
                         <p className="text-gray-300 leading-relaxed">
-                            If you have questions about this Privacy Policy, please contact us at support@fastwebsitespamchecker.com
+                            If you have questions about this Privacy Policy, please contact us at hyspam6@gmail.com
                         </p>
                     </Section>
                 </div>

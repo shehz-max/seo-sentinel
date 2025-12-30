@@ -55,7 +55,7 @@ export default function TermsOfService() {
 
                     <Section title="Contact">
                         <p className="text-gray-300 leading-relaxed">
-                            Questions about the Terms of Service should be sent to us at support@fastwebsitespamchecker.com
+                            Questions about the Terms of Service should be sent to us at hyspam6@gmail.com
                         </p>
                     </Section>
                 </div>
