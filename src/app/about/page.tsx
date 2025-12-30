@@ -16,7 +16,7 @@ export default function AboutPage() {
                     <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
                             <Users className="h-4 w-4" />
-                            <span>About Website Spam Check</span>
+                            <span>About Website Spams Check</span>
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
                             Built by SEO Pros, <br />
@@ -40,7 +40,7 @@ export default function AboutPage() {
                                 Our Story
                             </h2>
                             <p className="text-gray-300 leading-relaxed text-lg">
-                                We made this <strong>Website Spam Checker</strong> because we know the pain. We've seen websites drop in Google rankings from bad links you can't even spot. Sick of expensive tools that limit your checks, we built a free one powered by MOZ that just works.
+                                We made this <strong>Website Spams Checker</strong> because we know the pain. We've seen websites drop in Google rankings from bad links you can't even spot. Sick of expensive tools that limit your checks, we built a free one powered by MOZ that just works.
                             </p>
                             <p className="text-gray-400 mt-4 leading-relaxed">
                                 Spent years cleaning spammy profiles for clients. Now, we share the tool that saved our projects—no fluff, just results.
@@ -56,7 +56,7 @@ export default function AboutPage() {
                                 <ul className="space-y-4 text-gray-400">
                                     <li className="flex gap-3">
                                         <div className="h-6 w-6 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 text-white font-bold text-xs border border-white/10">1</div>
-                                        <span>Deliver instant spam score, DA, PA checks.</span>
+                                        <span>Deliver instant spams score, DA, PA checks.</span>
                                     </li>
                                     <li className="flex gap-3">
                                         <div className="h-6 w-6 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 text-white font-bold text-xs border border-white/10">2</div>

@@ -4,7 +4,7 @@ import { Calendar, Tag } from "lucide-react";
 const POSTS = [
     {
         slug: "what-is-spam-score",
-        title: "What is Spam Score & How to Lower It? (2024 Guide)",
+        title: "What is Spams Score & How to Lower It? (2024 Guide)",
         excerpt: "High spam score detected? Don't panic. Learn exactly how spam score is calculated, the 3 risk tiers, and 5 actionable steps to fix it today.",
         date: "Dec 17, 2025",
         category: "SEO Guides",
@@ -20,7 +20,7 @@ const POSTS = [
     },
     {
         slug: "27-spam-signals",
-        title: "The 27 Spam Signals That Kill Your Rankings",
+        title: "The 27 Spams Signals That Kill Your Rankings",
         excerpt: "From 'Poison Words' to 'Ratio of External Links', we break down the triggers that search engines use to detect spam.",
         date: "Dec 08, 2025",
         category: "Technical SEO",

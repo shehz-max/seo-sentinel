@@ -5,19 +5,19 @@ import { ArrowLeft, Calendar, Tag, User } from "lucide-react";
 // In a real app, this would be in a separate data file or CMS
 const BLOG_CONTENT: Record<string, { title: string; content: React.ReactNode; date: string; category: string; author: string }> = {
     "what-is-spam-score": {
-        title: "What is Spam Score & How to Lower It? (2024 Guide)",
+        title: "What is Spams Score & How to Lower It? (2024 Guide)",
         date: "Dec 17, 2025",
         category: "SEO Guides",
         author: "SEO Sentinel Team",
         content: (
             <>
                 <p className="lead text-xl text-slate-600 dark:text-slate-300 mb-8">
-                    Is your website toxic? A high Spam Score can silently kill your search rankings. Learn exactly how it's calculated and the 5 steps to fix it today.
+                    Is your website toxic? A high Spams Score can silently kill your search rankings. Learn exactly how it's calculated and the 5 steps to fix it today.
                 </p>
 
-                <h2>What is Spam Score?</h2>
+                <h2>What is Spams Score?</h2>
                 <p>
-                    Spam Score is a metric developed by SEO data providers (like Moz and Dapa) to measure the percentage of sites with similar features to yours that search engines have penalized or banned.
+                    Spams Score is a metric developed by SEO data providers (like Moz and Dapa) to measure the percentage of sites with similar features to yours that search engines have penalized or banned.
                 </p>
                 <p>
                     It represents the <strong>probability of spam</strong>, not necessarily that your site <em>is</em> spam. However, a score above <strong>30%</strong> is considered high risk and should be addressed immediately.
@@ -32,8 +32,8 @@ const BLOG_CONTENT: Record<string, { title: string; content: React.ReactNode; da
                     </ul>
                 </div>
 
-                <h2>What Causes a High Spam Score?</h2>
-                <p>It's rarely one thing. It's usually a combination of "Spam Signals". Here are the most common culprits we detect at SEO Sentinel:</p>
+                <h2>What Causes a High Spams Score?</h2>
+                <p>It's rarely one thing. It's usually a combination of "Spams Signals". Here are the most common culprits we detect at SEO Sentinel:</p>
                 <ul>
                     <li><strong>Poison Words:</strong> Using terms like "casino", "payday loan", or "pharmacy" in irrelevant contexts.</li>
                     <li><strong>Link Stuffing:</strong> Having an unnatural ratio of external links to text content.</li>
@@ -42,9 +42,9 @@ const BLOG_CONTENT: Record<string, { title: string; content: React.ReactNode; da
                     <li><strong>Low Authority TLDs:</strong> Domains ending in .xyz, .info, or .club often start with a higher baseline spam score.</li>
                 </ul>
 
-                <h2>How to Lower Your Spam Score (5 Steps)</h2>
+                <h2>How to Lower Your Spams Score (5 Steps)</h2>
                 <h3>1. Run a Full Scan</h3>
-                <p>Use our <Link href="/" className="text-primary underline">Free Spam Score Checker</Link> to identify exactly which signals you are failing. Are you missing a privacy policy? Do you have broken links?</p>
+                <p>Use our <Link href="/" className="text-primary underline">Free Spams Score Checker</Link> to identify exactly which signals you are failing. Are you missing a privacy policy? Do you have broken links?</p>
 
                 <h3>2. Disavow Toxic Backlinks</h3>
                 <p>If low-quality sites are linking to you, tell Google to ignore them using the <strong>Google Disavow Tool</strong>. This is the most effective way to lower your score if the issue is off-page.</p>
@@ -74,7 +74,7 @@ const BLOG_CONTENT: Record<string, { title: string; content: React.ReactNode; da
         content: <p>Placeholder content for Why DA Matters...</p>
     },
     "27-spam-signals": {
-        title: "The 27 Spam Signals That Kill Rankings",
+        title: "The 27 Spams Signals That Kill Rankings",
         date: "Dec 08, 2025",
         category: "Technical SEO",
         author: "SEO Sentinel Team",

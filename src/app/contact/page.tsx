@@ -49,7 +49,7 @@ export default function Contact() {
                         Contact <span className="text-gradient-blue">Us</span>
                     </h1>
                     <p className="mt-4 text-xl text-gray-400">
-                        Need help with your audit? Our team is here to assist you.
+                        Need help with your Spams Audit? Our team is here to assist you.
                     </p>
                 </div>
 

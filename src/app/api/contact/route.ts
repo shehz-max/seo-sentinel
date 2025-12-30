@@ -30,15 +30,27 @@ export async function POST(req: NextRequest) {
 
             await transporter.sendMail({
                 from: process.env.EMAIL_USER,
-                to: "support@seosentinel.com", // Or the user's receiving email
+                to: process.env.EMAIL_TO || "hyspam6@gmail.com",
+                replyTo: email,
                 subject: `New Contact Form Submission from ${name}`,
                 text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
                 html: `
-                <h3>New Contact Form Submission</h3>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Message:</strong></p>
-                <p>${message.replace(/\n/g, '<br>')}</p>
+                <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                    <div style="background-color: #0F172A; padding: 20px; color: white;">
+                        <h2 style="margin: 0;">New Contact Message</h2>
+                    </div>
+                    <div style="padding: 20px; color: #1e293b; line-height: 1.6;">
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                        <div style="margin-top: 20px; padding: 15px; background-color: #f8fafc; border-radius: 6px;">
+                            <p style="margin:0; font-weight: bold; color: #64748b;">Message:</p>
+                            <p style="margin-top: 10px;">${message.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    </div>
+                    <div style="background-color: #f1f5f9; padding: 15px; text-align: center; color: #94a3b8; font-size: 12px;">
+                        This email was sent from the Spams Checker contact form.
+                    </div>
+                </div>
             `,
             });
             console.log("Email sent successfully via Nodemailer");

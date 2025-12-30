@@ -133,8 +133,8 @@ export default function ResultClient({ domain }: { domain: string }) {
                     </div>
                 </MetricCard>
 
-                {/* Spam Score Card */}
-                <MetricCard title="Spam Score" value={`${data.metrics.spamScore}%`} label="Risk Level" color={data.metrics.spamScore > 30 ? "text-red-500" : "text-green-500"}>
+                {/* Spams Score Card */}
+                <MetricCard title="Spams Score" value={`${data.metrics.spamScore}%`} label="Risk Level" color={data.metrics.spamScore > 30 ? "text-red-500" : "text-green-500"}>
                     <div className="h-24 w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
@@ -231,22 +231,27 @@ export default function ResultClient({ domain }: { domain: string }) {
     );
 }
 
-function MetricCard({ title, value, label, children, color = "text-slate-900 dark:text-white" }: any) {
+function MetricCard({ title, value, label, children, color = "text-white" }: any) {
     return (
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
-            <div className="flex justify-between items-start mb-2">
-                <div className="flex items-center gap-2 text-slate-500">
-                    <Activity className="h-5 w-5" />
-                    <h3 className="font-medium uppercase tracking-wide text-xs">{title}</h3>
+        <div className="glass-dark p-6 rounded-[2rem] border border-white/10 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
+            {/* Background Accent */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 blur-3xl rounded-full group-hover:bg-primary/10 transition-colors" />
+
+            <div className="flex justify-between items-start mb-6 relative z-10">
+                <div className="flex items-center gap-2.5">
+                    <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover:scale-110 transition-transform">
+                        <Activity className="h-4 w-4 text-primary" />
+                    </div>
+                    <h3 className="font-bold uppercase tracking-widest text-[10px] text-slate-400">{title}</h3>
                 </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-end justify-between relative z-10">
                 <div>
-                    <p className={`text-4xl font-extrabold ${color} mt-2`}>{value}</p>
-                    <p className="text-sm text-slate-400 mt-2">{label}</p>
+                    <p className={`text-4xl md:text-5xl font-black ${color} tracking-tight`}>{value}</p>
+                    <p className="text-xs font-bold text-slate-500 mt-3 uppercase tracking-wider">{label}</p>
                 </div>
-                <div className="w-24 h-24 absolute right-4 top-4 opacity-50">
+                <div className="w-24 h-24 opacity-60 group-hover:opacity-100 transition-opacity transform group-hover:scale-110 duration-500">
                     {children}
                 </div>
             </div>

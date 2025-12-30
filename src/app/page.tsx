@@ -105,7 +105,7 @@ export default function Home() {
                   <ArrowRight className="h-5 w-5 text-gray-500 group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </h3>
                 <p className="text-gray-400 max-w-md">
-                  Have a list of domains? Analyze up to <span className="text-white font-bold">50 websites</span> at once. Get Spame Score, DA, and PA in seconds with one click.
+                  Have a list of domains? Analyze up to <span className="text-white font-bold">50 websites</span> at once. Get Spams Score, DA, and PA in seconds with one click.
                 </p>
               </div>
 
@@ -124,8 +124,8 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-slate-950/50" id="features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Features of Our "SpamsCheck" Tool</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">High spam score kills rankings—don't wait for Google penalties. Here's why 10K+ SEOs pick our tool:</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Features of Our <span className="text-gradient-blue">SpamsCheck</span> Tool</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">High spams score kills rankings—don't wait for Google penalties. Here's why 1,000+ SEOs pick our tool:</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -176,7 +176,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-8 text-sm text-gray-500">
-              No credit card required • 3 Free daily scan
+              No credit card required • 3 Free daily scans
             </p>
           </div>
         </div>

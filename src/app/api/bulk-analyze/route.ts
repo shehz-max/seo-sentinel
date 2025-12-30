@@ -172,13 +172,29 @@ async function analyzeSingleUrl(urlInput: string) {
         const apiSpamScore = Math.max(0, dapaMetrics.spamScore);
         const finalSpamScore = Math.round((apiSpamScore * 0.4) + (technicalSpamScore * 0.6));
 
+        // --- NEW: Generate Dynamic Insight based on signals ---
+        const failedCount = spamSignals.filter(s => s.detected).length;
+        const failedNames = spamSignals.filter(s => s.detected).map(s => s.name.split(' ')[0]);
+        let insight = "";
+
+        if (failedCount === 0) {
+            insight = `Exceptional domain health. ${domain} shows no detectable spam signals across 27 checkpoints. Highly trusted asset.`;
+        } else if (finalSpamScore > 50) {
+            insight = `Critical toxicity detected. Risks found in ${failedNames.slice(0, 2).join(", ")}. Immediate link removal or disavow recommended.`;
+        } else if (failedCount > 5) {
+            insight = `Moderate risk profile. Over ${failedCount} technical red flags found, including ${failedNames[0]} issues. Monitor closely.`;
+        } else {
+            insight = `Generally stable domain. Minor optimizations needed for ${failedNames[0] || 'SEO'} for better ranking potential.`;
+        }
+
         const resultData = {
             domain,
             da: dapaMetrics.domainAuthority,
             pa: dapaMetrics.pageAuthority,
             spamScore: finalSpamScore,
             backlinks: dapaMetrics.totalBacklinks,
-            signals: spamSignals, // Returning the 27 rules findings
+            signals: spamSignals,
+            insight, // Unique per-domain report
             status: "success" as const
         };
 
@@ -206,6 +222,7 @@ async function analyzeSingleUrl(urlInput: string) {
             spamScore: 0,
             backlinks: 0,
             status: "failed",
+            insight: "Analysis failed. Server could not reach the domain.",
             error: error instanceof Error ? error.message : "Unknown error"
         };
     }

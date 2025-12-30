@@ -10,7 +10,8 @@ interface BulkResult {
     spamScore: number;
     backlinks: number;
     status: "success" | "failed";
-    signals?: string[];
+    signals?: any[];
+    insight?: string;
 }
 
 interface BulkResultsTableProps {
@@ -52,7 +53,7 @@ export default function BulkResultsTable({ results }: BulkResultsTableProps) {
     };
 
     const downloadCSV = () => {
-        const headers = ["Domain", "DA", "PA", "Spam Score", "Status", "Issues Found"];
+        const headers = ["Domain", "DA", "PA", "Spams Score", "Status", "Issues Found"];
         const rows = results.map(r => [
             r.domain,
             r.da,
@@ -103,7 +104,7 @@ export default function BulkResultsTable({ results }: BulkResultsTableProps) {
                             <th className="px-6 py-4 cursor-pointer hover:text-white whitespace-nowrap" onClick={() => handleSort("domain")}>Domain</th>
                             <th className="px-6 py-4 cursor-pointer hover:text-white whitespace-nowrap" onClick={() => handleSort("da")}>DA</th>
                             <th className="px-6 py-4 cursor-pointer hover:text-white whitespace-nowrap" onClick={() => handleSort("pa")}>PA</th>
-                            <th className="px-6 py-4 cursor-pointer hover:text-white whitespace-nowrap" onClick={() => handleSort("spamScore")}>Spam Score</th>
+                            <th className="px-6 py-4 cursor-pointer hover:text-white whitespace-nowrap" onClick={() => handleSort("spamScore")}>Spams Score</th>
                             <th className="px-6 py-4 whitespace-nowrap">Analysis</th>
                         </tr>
                     </thead>
@@ -165,17 +166,19 @@ export default function BulkResultsTable({ results }: BulkResultsTableProps) {
                                                         )}
                                                     </div>
 
-                                                    {/* AI Consultant Placeholder */}
-                                                    <div className="w-1/3 min-w-[200px] border-l border-white/10 pl-4">
-                                                        <h5 className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">AI Consultant</h5>
-                                                        <p className="text-xs text-gray-400 mb-3">
-                                                            {result.spamScore > 50
-                                                                ? "This domain shows significant toxicity signs. Immediate audit recommended."
-                                                                : "This domain appears healthy, but monitor backlinks regularly."}
+                                                    {/* AI Consultant */}
+                                                    <div className="w-1/3 min-w-[200px] border-l border-white/10 pl-4 flex flex-col justify-center">
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <div className="p-1.5 bg-primary/20 rounded-md">
+                                                                <CheckCircle className="h-3 w-3 text-primary" />
+                                                            </div>
+                                                            <h5 className="text-[10px] font-bold text-white uppercase tracking-widest">AI Audit Summary</h5>
+                                                        </div>
+                                                        <p className="text-xs text-gray-400 italic leading-relaxed">
+                                                            "{result.insight || (result.spamScore > 50
+                                                                ? "Critical toxicity detected. Highly recommend immediate audit."
+                                                                : "Standard profile. No immediate action required.")}"
                                                         </p>
-                                                        <button className="w-full py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary text-xs font-bold border border-primary/20 transition-all">
-                                                            Ask AI Assistant
-                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
