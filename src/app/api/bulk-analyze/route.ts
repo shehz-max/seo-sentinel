@@ -89,9 +89,13 @@ async function processBulkInline(urls: string[]) {
     // Process 5 concurrent requests at a time
     for (let i = 0; i < urls.length; i += 5) {
         const batch = urls.slice(i, i + 5);
-        const batchResults = await Promise.all(
-            batch.map(url => analyzeSingleUrl(url))
-        );
+        const batchResults = [];
+        for (const url of batch) {
+            const res = await analyzeSingleUrl(url);
+            batchResults.push(res);
+            // Extra buffer between Groq calls inside the batch
+            await new Promise(r => setTimeout(r, 500));
+        }
         results.push(...batchResults);
 
         // API rate limit buffer
@@ -104,6 +108,7 @@ async function processBulkInline(urls: string[]) {
 }
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+const CACHE_VERSION = "v2"; // Force refresh to get descriptive AI insights
 
 async function analyzeSingleUrl(urlInput: string) {
     let domain = "";
@@ -123,8 +128,7 @@ async function analyzeSingleUrl(urlInput: string) {
         // Check if we have a recent scan for this domain in Firestore
         if (db) {
             try {
-                const cacheRef = doc(db, "cached_analyses", domain);
-                const cacheSnap = await getDoc(cacheRef);
+                const cacheRef = doc(db, "cached_analyses", `${domain}_${CACHE_VERSION}`);
 
                 if (cacheSnap.exists()) {
                     const cacheData = cacheSnap.data();
@@ -207,10 +211,11 @@ async function analyzeSingleUrl(urlInput: string) {
         // --- CACHE SAVE ---
         if (db) {
             try {
-                await setDoc(doc(db, "cached_analyses", domain), {
+                await setDoc(doc(db, "cached_analyses", `${domain}_${CACHE_VERSION}`), {
                     result: resultData,
                     updatedAt: new Date().toISOString(),
-                    timestamp: new Date()
+                    timestamp: new Date(),
+                    v: CACHE_VERSION
                 });
             } catch (saveErr) {
                 console.warn("Failed to save to cache:", saveErr);
