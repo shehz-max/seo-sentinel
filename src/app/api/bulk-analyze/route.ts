@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDapaMetrics } from "@/services/dapaService";
 import { analyzeHtmlSignals, calculateCustomSpamScore } from "@/services/spamDetector";
-import { db } from "@/lib/firebase"; // Make sure firebase-admin is not used here if using client SDK, but typically API routes need admin. 
+import { getAiInsight } from "@/services/groqService";
+import { db } from "@/lib/firebase";
 // However, the existing project seems to use client SDK in 'src/lib/firebase.ts' which initializes app based on window check.
 // Using client SDK in API routes works for some ops but usually Admin SDK is better. 
 // Given the constraints and existing code reuse, we will attempt to use the existing services.
@@ -172,19 +173,24 @@ async function analyzeSingleUrl(urlInput: string) {
         const apiSpamScore = Math.max(0, dapaMetrics.spamScore);
         const finalSpamScore = Math.round((apiSpamScore * 0.4) + (technicalSpamScore * 0.6));
 
-        // --- NEW: Generate Dynamic Insight based on signals ---
-        const failedCount = spamSignals.filter(s => s.detected).length;
-        const failedNames = spamSignals.filter(s => s.detected).map(s => s.name.split(' ')[0]);
-        let insight = "";
+        // --- NEW: Generate Dynamic AI Insight ---
+        const failedSignalsList = spamSignals.filter(s => s.detected).map(s => s.name);
+        const aiInsight = await getAiInsight(domain, dapaMetrics.domainAuthority, finalSpamScore, failedSignalsList);
 
-        if (failedCount === 0) {
-            insight = `Exceptional domain health. ${domain} shows no detectable spam signals across 27 checkpoints. Highly trusted asset.`;
-        } else if (finalSpamScore > 50) {
-            insight = `Critical toxicity detected. Risks found in ${failedNames.slice(0, 2).join(", ")}. Immediate link removal or disavow recommended.`;
-        } else if (failedCount > 5) {
-            insight = `Moderate risk profile. Over ${failedCount} technical red flags found, including ${failedNames[0]} issues. Monitor closely.`;
-        } else {
-            insight = `Generally stable domain. Minor optimizations needed for ${failedNames[0] || 'SEO'} for better ranking potential.`;
+        // Fallback to rule-based if AI fails or returns error string
+        let insight = aiInsight;
+        if (aiInsight.includes("Unavailable") || aiInsight.includes("failed")) {
+            const failedCount = spamSignals.filter(s => s.detected).length;
+            const failedNames = spamSignals.filter(s => s.detected).map(s => s.name.split(' ')[0]);
+            if (failedCount === 0) {
+                insight = `Exceptional domain health. ${domain} shows no detectable spam signals across 27 checkpoints. Highly trusted asset.`;
+            } else if (finalSpamScore > 50) {
+                insight = `Critical toxicity detected. Risks found in ${failedNames.slice(0, 2).join(", ")}. Immediate link removal or disavow recommended.`;
+            } else if (failedCount > 5) {
+                insight = `Moderate risk profile. Over ${failedCount} technical red flags found, including ${failedNames[0]} issues. Monitor closely.`;
+            } else {
+                insight = `Generally stable domain. Minor optimizations needed for ${failedNames[0] || 'SEO'} for better ranking potential.`;
+            }
         }
 
         const resultData = {
