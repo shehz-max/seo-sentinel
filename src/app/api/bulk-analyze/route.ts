@@ -129,6 +129,7 @@ async function analyzeSingleUrl(urlInput: string) {
         if (db) {
             try {
                 const cacheRef = doc(db, "cached_analyses", `${domain}_${CACHE_VERSION}`);
+                const cacheSnap = await getDoc(cacheRef);
 
                 if (cacheSnap.exists()) {
                     const cacheData = cacheSnap.data();
