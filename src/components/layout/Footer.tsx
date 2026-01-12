@@ -55,9 +55,9 @@ export default function Footer() {
                         &copy; {new Date().getFullYear()} Spams Checker. All rights reserved.
                     </p>
                     <div className="flex gap-4">
-                        <SocialLink href="#" icon={<Twitter className="h-4 w-4" />} />
-                        <SocialLink href="#" icon={<Facebook className="h-4 w-4" />} />
-                        <SocialLink href="#" icon={<Instagram className="h-4 w-4" />} />
+                        <SocialLink href="https://x.com/hyspam6" icon={<Twitter className="h-4 w-4" />} />
+                        <SocialLink href="https://web.facebook.com/spamscheck" icon={<Facebook className="h-4 w-4" />} />
+                        <SocialLink href="https://www.instagram.com/spams_check/" icon={<Instagram className="h-4 w-4" />} />
                         <SocialLink href="mailto:hyspam6@gmail.com" icon={<Mail className="h-4 w-4" />} />
                     </div>
                 </div>
