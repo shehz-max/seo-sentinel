@@ -37,6 +37,7 @@ interface AuthContextType {
     canCheckBulk: (count: number) => boolean;
     remainingSingleChecks: () => number;
     remainingBulkDomains: () => number;
+    isAdmin: boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -52,6 +53,7 @@ const AuthContext = createContext<AuthContextType>({
     canCheckBulk: () => false,
     remainingSingleChecks: () => 0,
     remainingBulkDomains: () => 0,
+    isAdmin: false,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -214,7 +216,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             canCheckSingle,
             canCheckBulk,
             remainingSingleChecks,
-            remainingBulkDomains
+            remainingBulkDomains,
+            isAdmin: user?.email === "hyspam6@gmail.com"
         }}>
             {children}
         </AuthContext.Provider>

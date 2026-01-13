@@ -1,132 +1,124 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, Tag, User } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { ArrowLeft, Calendar, User, Tag, Loader2, Share2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import Navbar from "@/components/layout/Navbar";
 
-// In a real app, this would be in a separate data file or CMS
-const BLOG_CONTENT: Record<string, { title: string; content: React.ReactNode; date: string; category: string; author: string }> = {
-    "what-is-spam-score": {
-        title: "What is Spams Score & How to Lower It? (2024 Guide)",
-        date: "Dec 17, 2025",
-        category: "SEO Guides",
-        author: "SEO Sentinel Team",
-        content: (
-            <>
-                <p className="lead text-xl text-slate-600 dark:text-slate-300 mb-8">
-                    Is your website toxic? A high Spams Score can silently kill your search rankings. Learn exactly how it's calculated and the 5 steps to fix it today.
-                </p>
+interface BlogPost {
+    title: string;
+    content: string;
+    date: string;
+    category: string;
+    author: string;
+    slug: string;
+}
 
-                <h2>What is Spams Score?</h2>
-                <p>
-                    Spams Score is a metric developed by SEO data providers (like Moz and Dapa) to measure the percentage of sites with similar features to yours that search engines have penalized or banned.
-                </p>
-                <p>
-                    It represents the <strong>probability of spam</strong>, not necessarily that your site <em>is</em> spam. However, a score above <strong>30%</strong> is considered high risk and should be addressed immediately.
-                </p>
+export default function BlogPost() {
+    const params = useParams();
+    const slug = params.slug as string;
+    const [post, setPost] = useState<BlogPost | null>(null);
+    const [loading, setLoading] = useState(true);
 
-                <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-6 my-8">
-                    <h3 className="text-blue-700 dark:text-blue-300 font-bold mt-0">The 3 Tiers of Risk</h3>
-                    <ul className="list-none pl-0 mb-0 space-y-2">
-                        <li>🟢 <strong>1-30% (Low Risk):</strong> Normal for most sites.</li>
-                        <li>🟡 <strong>31-60% (Medium Risk):</strong> Warning signs detected. Investigate.</li>
-                        <li>🔴 <strong>61-100% (High Risk):</strong> Critical. Likely penalized by Google.</li>
-                    </ul>
-                </div>
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                if (!db) return;
+                const docRef = doc(db, "posts", slug);
+                const docSnap = await getDoc(docRef);
 
-                <h2>What Causes a High Spams Score?</h2>
-                <p>It's rarely one thing. It's usually a combination of "Spams Signals". Here are the most common culprits we detect at SEO Sentinel:</p>
-                <ul>
-                    <li><strong>Poison Words:</strong> Using terms like "casino", "payday loan", or "pharmacy" in irrelevant contexts.</li>
-                    <li><strong>Link Stuffing:</strong> Having an unnatural ratio of external links to text content.</li>
-                    <li><strong>Missing Pages:</strong> Legitimate businesses have Contact, Privacy, and About pages. Spam sites often don't.</li>
-                    <li><strong>No Contact Info:</strong> Missing email addresses or phone numbers.</li>
-                    <li><strong>Low Authority TLDs:</strong> Domains ending in .xyz, .info, or .club often start with a higher baseline spam score.</li>
-                </ul>
+                if (docSnap.exists()) {
+                    setPost(docSnap.data() as BlogPost);
+                }
+            } catch (error) {
+                console.error("Error fetching post:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-                <h2>How to Lower Your Spams Score (5 Steps)</h2>
-                <h3>1. Run a Full Scan</h3>
-                <p>Use our <Link href="/" className="text-primary underline">Free Spams Score Checker</Link> to identify exactly which signals you are failing. Are you missing a privacy policy? Do you have broken links?</p>
+        if (slug) fetchPost();
+    }, [slug]);
 
-                <h3>2. Disavow Toxic Backlinks</h3>
-                <p>If low-quality sites are linking to you, tell Google to ignore them using the <strong>Google Disavow Tool</strong>. This is the most effective way to lower your score if the issue is off-page.</p>
-
-                <h3>3. Add Trust Pages</h3>
-                <p>Ensure your footer links to a robust Privacy Policy, Terms of Service, and Contact Us page. Add a physical address if possible.</p>
-
-                <h3>4. Clean Up Your Content</h3>
-                <p>Remove any "thin" content (pages with less than 300 words) or auto-generated text. Replace it with high-quality, helpful articles.</p>
-
-                <h3>5. Secure Your Site (HTTPS)</h3>
-                <p>Google considers non-secure (HTTP) sites as a security risk. Ensure your SSL certificate is valid and active on all pages.</p>
-
-                <h2>Conclusion</h2>
-                <p>
-                    A high spam score isn't a death sentence, but it is a wake-up call. By methodically fixing these technical signals, you can recover your rankings and build a healthier, more authoritative domain.
-                </p>
-            </>
-        )
-    },
-    // Keep placeholder content for other links so they don't 404
-    "why-da-matters": {
-        title: "Why Domain Authority Actually Matters",
-        date: "Dec 10, 2025",
-        category: "SEO Metrics",
-        author: "SEO Sentinel Team",
-        content: <p>Placeholder content for Why DA Matters...</p>
-    },
-    "27-spam-signals": {
-        title: "The 27 Spams Signals That Kill Rankings",
-        date: "Dec 08, 2025",
-        category: "Technical SEO",
-        author: "SEO Sentinel Team",
-        content: <p>Placeholder content for 27 Signals...</p>
-    },
-    "hybrid-seo-audit": {
-        title: "Why AI Alone Cannot Do SEO Audits",
-        date: "Dec 05, 2025",
-        category: "Case Study",
-        author: "SEO Sentinel Team",
-        content: <p>Placeholder content for Hybrid Audit...</p>
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-[#020617] flex items-center justify-center">
+                <Loader2 className="h-10 w-10 text-primary animate-spin" />
+            </div>
+        );
     }
-};
-
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const post = BLOG_CONTENT[slug];
 
     if (!post) {
-        return notFound();
+        return (
+            <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-white">
+                <h1 className="text-4xl font-bold mb-4">404 - Post Not Found</h1>
+                <Link href="/blog" className="text-primary hover:underline">Return to Blog</Link>
+            </div>
+        );
     }
 
     return (
-        <article className="min-h-screen pt-24 pb-20">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Link href="/blog" className="inline-flex items-center text-primary group mb-8 transition-all hover:translate-x-[-4px]">
-                    <ArrowLeft className="h-4 w-4 mr-2" /> Back to Resources
-                </Link>
+        <div className="min-h-screen bg-[#020617] selection:bg-primary/20 selection:text-white">
+            <Navbar />
 
-                <div className="mb-10 sm:mb-12">
-                    <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest text-primary bg-primary/10 rounded-lg uppercase mb-6 border border-primary/20">
-                        {post.category}
-                    </span>
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-[1.2] mb-8">
-                        {post.title}
-                    </h1>
-                    <div className="flex items-center gap-4 text-xs sm:text-sm text-slate-500 mb-10 pb-10 border-b border-white/10">
-                        <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            {post.date}
+            <article className="relative pt-32 pb-24">
+                {/* Background Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <Link href="/blog" className="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-12 group">
+                        <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                        Back to Resources
+                    </Link>
+
+                    <header className="mb-16 text-center">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+                            <Tag className="h-3 w-3" />
+                            {post.category}
                         </div>
-                        <div className="flex items-center">
-                            <User className="h-4 w-4 mr-2" />
-                            {post.author}
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 leading-tight">
+                            {post.title}
+                        </h1>
+
+                        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400 border-y border-white/5 py-6">
+                            <div className="flex items-center">
+                                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold mr-3">
+                                    {post.author?.[0] || 'S'}
+                                </div>
+                                <span className="font-medium text-white">{post.author}</span>
+                            </div>
+                            <div className="w-1 h-1 rounded-full bg-gray-600" />
+                            <div className="flex items-center">
+                                <Calendar className="h-4 w-4 mr-2" />
+                                {post.date}
+                            </div>
                         </div>
+                    </header>
+
+                    <div className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-gray-300 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-primary prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-img:rounded-2xl prose-img:border prose-img:border-white/10">
+                        <ReactMarkdown>{post.content}</ReactMarkdown>
                     </div>
 
-                    <div className="prose dark:prose-invert prose-base sm:prose-lg lg:prose-xl max-w-none prose-headings:text-white prose-a:text-primary prose-strong:text-white prose-img:rounded-3xl">
-                        {post.content}
+                    <div className="mt-20 pt-10 border-t border-white/10">
+                        <div className="bg-white/5 rounded-2xl p-8 sm:p-12 text-center border border-white/5">
+                            <h3 className="text-2xl font-bold text-white mb-4">Enjoyed this article?</h3>
+                            <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+                                Check your website's spam score instantly with our free tool.
+                            </p>
+                            <Link
+                                href="/"
+                                className="inline-flex items-center px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold transition-all shadow-lg shadow-primary/20 hover:scale-105"
+                            >
+                                Check My Website
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </div>
     );
 }
