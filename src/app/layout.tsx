@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fastwebsitespamchecker.com'),
-  title: "Free Spams Checker - Free Spam Score & DA Analysis",
+  title: "Free Spams Check - Free Spam Score & DA Analysis",
   description: "Check any website's Spam Score and Domain Authority (DA) instantly. Free AI-powered SEO analysis, toxicity detection, and backlink audit tool.",
   keywords: ["spam score checker", "free spams checker", "check website spam", "domain authority checker", "da pa checker", "seo toxicity check", "google penalty checker", "website safety check"],
   authors: [{ name: "Free Spams Checker" }],
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     url: 'https://fastwebsitespamchecker.com',
     title: 'Free Spams Checker - Free Analysis',
     description: 'Protect your rankings. Detect toxic SEO signals and check Domain Authority instantly.',
-    siteName: 'Free Spams Checker',
+    siteName: 'Free Spams Check',
     images: [{
       url: '/og-image.png',
       width: 1200,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Spams Checker',
+    title: 'Free Spams Check',
     description: 'Instantly check website spam score and Domain Authority.',
     images: ['/og-image.png'],
   },

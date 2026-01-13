@@ -42,7 +42,7 @@ export default function Navbar() {
                             </div>
                             <span className="font-bold text-lg md:text-xl tracking-tight">
                                 <span className="text-white">Free</span>
-                                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Spams Checker</span>
+                                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Spams Check</span>
                             </span>
                         </Link>
                     </div>
@@ -93,7 +93,7 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {isOpen && (
-                <div className="lg:hidden glass-dark border-t border-primary/20 absolute top-full left-0 right-0 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 z-[100] bg-slate-950 border-b border-white/10">
+                <div className="lg:hidden glass-dark border-t border-primary/20 absolute top-full left-0 right-0 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 z-[100] bg-slate-950 border-b border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto">
                     <div className="px-4 pt-4 pb-6 space-y-2">
                         <Link href="/" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-lg font-bold text-white hover:bg-white/10 border border-transparent hover:border-primary/20 transition-all">Tool</Link>
                         <Link href="/blog" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-xl text-lg font-bold text-white hover:bg-white/10 border border-transparent hover:border-primary/20 transition-all">Blogs</Link>
