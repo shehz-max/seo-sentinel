@@ -217,7 +217,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             canCheckBulk,
             remainingSingleChecks,
             remainingBulkDomains,
-            isAdmin: user?.email === "hyspam6@gmail.com"
+            isAdmin: (user?.email || "").toLowerCase() === "hyspam6@gmail.com"
         }}>
             {children}
         </AuthContext.Provider>

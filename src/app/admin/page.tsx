@@ -23,15 +23,37 @@ export default function AdminDashboard() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        if (!loading) {
-            if (!user || !isAdmin) {
-                router.push("/");
-            } else {
-                fetchPosts();
-            }
-        }
-    }, [user, isAdmin, loading, router]);
+    // Debugging: Don't redirect immediately. Show why access is denied.
+    if (!loading && (!user || !isAdmin)) {
+        return (
+            <div className="min-h-screen bg-[#020617] text-white pt-32 px-4">
+                <Navbar />
+                <div className="max-w-2xl mx-auto text-center border border-red-500/20 bg-red-500/10 rounded-2xl p-10">
+                    <h1 className="text-3xl font-bold text-red-500 mb-4">Access Denied</h1>
+                    <p className="text-gray-300 mb-6">
+                        You do not have permission to view the Admin Panel.
+                    </p>
+
+                    <div className="bg-black/40 rounded-lg p-4 mb-8 text-left inline-block">
+                        <p className="font-mono text-sm text-gray-400">
+                            <strong>Expected:</strong> hyspam6@gmail.com<br />
+                            <strong>Current:</strong> {user?.email || "Not Logged In"} ({user ? "User ID: " + user.uid : "No Session"})<br />
+                            <strong>Is Admin:</strong> {isAdmin ? "Yes" : "No"}
+                        </p>
+                    </div>
+
+                    <div>
+                        <Link
+                            href="/"
+                            className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg font-bold transition-all"
+                        >
+                            Return Home
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     const fetchPosts = async () => {
         try {

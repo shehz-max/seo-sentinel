@@ -9,7 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const { user, logout } = useAuth();
+    const { user, logout, isAdmin } = useAuth();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -62,6 +62,14 @@ export default function Navbar() {
                                             Free Plan
                                         </span>
                                     </div>
+                                    {isAdmin && (
+                                        <Link
+                                            href="/admin"
+                                            className="px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-bold text-red-500 uppercase tracking-wide hover:bg-red-500/20 transition-all"
+                                        >
+                                            Admin
+                                        </Link>
+                                    )}
                                     <button
                                         onClick={logout}
                                         className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all border border-transparent hover:border-red-500/20"
