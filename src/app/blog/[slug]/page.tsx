@@ -63,8 +63,6 @@ export default function BlogPost() {
 
     return (
         <div className="min-h-screen bg-[#020617] selection:bg-primary/20 selection:text-white">
-            <Navbar />
-
             <article className="relative pt-32 pb-24">
                 {/* Background Glow */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />

@@ -58,8 +58,6 @@ export default function BlogIndex() {
 
     return (
         <div className="min-h-screen bg-[#020617] selection:bg-primary/20 selection:text-white">
-            <Navbar />
-
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
                 <div className="text-center mb-16 sm:mb-24">
                     <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
