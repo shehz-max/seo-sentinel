@@ -2,51 +2,100 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { db } from "@/lib/firebase";
-import { collection, deleteDoc, doc, getDocs, orderBy, query } from "firebase/firestore";
-import { Edit, Plus, Trash2, Eye, LayoutDashboard } from "lucide-react";
+import { collection, deleteDoc, doc, getDocs, query } from "firebase/firestore";
+import { Edit, Plus, Trash2, Eye, LayoutDashboard, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/layout/Navbar";
 
 interface BlogPost {
     slug: string;
     title: string;
     date: string;
     category: string;
-    publishedAt?: any;
 }
 
 export default function AdminDashboard() {
     const { user, isAdmin, loading } = useAuth();
     const router = useRouter();
     const [posts, setPosts] = useState<BlogPost[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isFetching, setIsFetching] = useState(true);
 
-    // Debugging: Don't redirect immediately. Show why access is denied.
-    if (!loading && (!user || !isAdmin)) {
+    useEffect(() => {
+        let mounted = true;
+
+        const init = async () => {
+            if (loading) return; // Wait for initial auth load
+
+            if (!user || !isAdmin) {
+                // Not authorized, stop fetching
+                if (mounted) setIsFetching(false);
+                return;
+            }
+
+            // Safety Valve: If DB hangs (missing index etc), stop loading after 5s
+            const timeoutId = setTimeout(() => {
+                if (mounted && isFetching) {
+                    console.warn("Fetch timed out, forcing UI load");
+                    setIsFetching(false);
+                }
+            }, 5000);
+
+            try {
+                // Simple query - NO orderBy to prevent index hanging on empty collections
+                const postsRef = collection(db, "posts");
+                const q = query(postsRef);
+                const querySnapshot = await getDocs(q);
+
+                const fetchedPosts: BlogPost[] = [];
+                querySnapshot.forEach((doc) => {
+                    fetchedPosts.push(doc.data() as BlogPost);
+                });
+
+                if (mounted) setPosts(fetchedPosts);
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            } finally {
+                if (mounted) {
+                    setIsFetching(false);
+                    clearTimeout(timeoutId);
+                }
+            }
+        };
+
+        init();
+
+        return () => { mounted = false; };
+    }, [user, isAdmin, loading]);
+
+    // 1. Loading State (Auth or Data Fetching)
+    if (loading || (isAdmin && isFetching)) {
+        return (
+            <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center text-white">
+                <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
+                <p className="text-gray-400">Loading Dashboard...</p>
+            </div>
+        );
+    }
+
+    // 2. Access Denied State
+    if (!user || !isAdmin) {
         return (
             <div className="min-h-screen bg-[#020617] text-white pt-32 px-4">
-                <Navbar />
                 <div className="max-w-2xl mx-auto text-center border border-red-500/20 bg-red-500/10 rounded-2xl p-10">
                     <h1 className="text-3xl font-bold text-red-500 mb-4">Access Denied</h1>
-                    <p className="text-gray-300 mb-6">
-                        You do not have permission to view the Admin Panel.
-                    </p>
+                    <p className="text-gray-300 mb-6">You do not have permission to view the Admin Panel.</p>
 
                     <div className="bg-black/40 rounded-lg p-4 mb-8 text-left inline-block">
                         <p className="font-mono text-sm text-gray-400">
                             <strong>Expected:</strong> hyspam6@gmail.com<br />
-                            <strong>Current:</strong> {user?.email || "Not Logged In"} ({user ? "User ID: " + user.uid : "No Session"})<br />
+                            <strong>Current:</strong> {user?.email || "Not Logged In"}<br />
                             <strong>Is Admin:</strong> {isAdmin ? "Yes" : "No"}
                         </p>
                     </div>
 
                     <div>
-                        <Link
-                            href="/"
-                            className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg font-bold transition-all"
-                        >
+                        <Link href="/" className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg font-bold transition-all">
                             Return Home
                         </Link>
                     </div>
@@ -54,24 +103,6 @@ export default function AdminDashboard() {
             </div>
         );
     }
-
-    const fetchPosts = async () => {
-        try {
-            const postsRef = collection(db, "posts");
-            const q = query(postsRef, orderBy("publishedAt", "desc"));
-            const querySnapshot = await getDocs(q);
-
-            const fetchedPosts: BlogPost[] = [];
-            querySnapshot.forEach((doc) => {
-                fetchedPosts.push(doc.data() as BlogPost);
-            });
-            setPosts(fetchedPosts);
-        } catch (error) {
-            console.error("Error fetching posts:", error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     const handleDelete = async (slug: string) => {
         if (confirm("Are you sure you want to delete this post?")) {
@@ -85,20 +116,9 @@ export default function AdminDashboard() {
         }
     };
 
-    if (loading || isLoading) {
-        return (
-            <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">
-                Loading Admin Panel...
-            </div>
-        );
-    }
-
-    if (!isAdmin) return null;
-
+    // 3. Main Dashboard (Authenticated)
     return (
         <div className="min-h-screen bg-[#020617] text-white">
-            <Navbar />
-
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4">
                     <div>

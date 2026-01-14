@@ -70,6 +70,8 @@ function SocialLink({ href, icon }: { href: string, icon: React.ReactNode }) {
     return (
         <a
             href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary/20 hover:border-primary/30 transition-all"
         >
             {icon}
