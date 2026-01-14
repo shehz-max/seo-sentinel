@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   verification: {
-    google: 'G-SEO-SENTINEL-VERIFY-2025',
+    google: 'NJwQvc36BlFIPHGbZyDwEOHIYimqVSCiQ9G9vKhS2gk',
   },
 };
 
