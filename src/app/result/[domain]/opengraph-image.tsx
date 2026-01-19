@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'SEO Sentinel Analysis'
+export const alt = 'Free Spams Check Analysis'
 export const size = {
     width: 1200,
     height: 630,
@@ -36,7 +36,7 @@ export default async function Image({ params }: { params: { domain: string } }) 
                     }}
                 >
                     <div style={{ fontSize: 60, fontWeight: 'bold', color: 'white', marginRight: '20px' }}>🛡️</div>
-                    <div style={{ fontSize: 60, fontWeight: 'bold', color: 'white' }}>SEO Sentinel</div>
+                    <div style={{ fontSize: 60, fontWeight: 'bold', color: 'white' }}>Free Spams Check</div>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'rgba(255,255,255,0.1)', padding: '40px 60px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.2)' }}>

@@ -78,7 +78,7 @@ export default function ResultClient({ domain }: { domain: string }) {
             <p className="mt-8 text-xl font-medium bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-pulse">
                 Auditing Signals & Moz Data...
             </p>
-            <p className="mt-2 text-slate-500 text-sm">Powered by SEO Sentinel AI Engine</p>
+            <p className="mt-2 text-slate-500 text-sm">Powered by Free Spams Check AI Engine</p>
         </div>
     );
 

@@ -165,7 +165,7 @@ export default function Home() {
               Ready to <span className="text-gradient-blue">Dominate?</span>
             </h2>
             <p className="text-lg text-gray-400 mb-10 leading-relaxed">
-              Join 1,000+ website owners who use SEO Sentinel to keep their domains safe and authoritative.
+              Join 1,000+ website owners who use Free Spams Check to keep their domains safe and authoritative.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/signup" className="w-full sm:w-auto px-10 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-bold text-lg hover:scale-105 transition-all shadow-lg shadow-primary/40">

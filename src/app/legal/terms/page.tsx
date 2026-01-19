@@ -10,13 +10,13 @@ export default function TermsOfService() {
                 <div className="space-y-8">
                     <Section title="Acceptance of Terms">
                         <p className="text-gray-300 leading-relaxed">
-                            By accessing and using Free Spams Checker, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use our service.
+                            By accessing and using Free Spams Check, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use our service.
                         </p>
                     </Section>
 
                     <Section title="Use License">
                         <p className="text-gray-300 leading-relaxed mb-4">
-                            Permission is granted to use Free Spams Checker for personal and commercial website analysis purposes. This license shall automatically terminate if you violate any of these restrictions.
+                            Permission is granted to use Free Spams Check for personal and commercial website analysis purposes. This license shall automatically terminate if you violate any of these restrictions.
                         </p>
                         <p className="text-gray-300 leading-relaxed">
                             You may not:
@@ -31,7 +31,7 @@ export default function TermsOfService() {
 
                     <Section title="Service Description">
                         <p className="text-gray-300 leading-relaxed">
-                            Free Spams Checker provides website spam analysis using a combination of DapaChecker API data, real-time HTML scraping, and AI-powered insights (via Groq). We strive for accuracy but do not guarantee that our analysis is error-free or complete.
+                            Free Spams Check provides website spam analysis using a combination of DapaChecker API data, real-time HTML scraping, and AI-powered insights (via Groq). We strive for accuracy but do not guarantee that our analysis is error-free or complete.
                         </p>
                     </Section>
 
@@ -43,7 +43,7 @@ export default function TermsOfService() {
 
                     <Section title="Limitation of Liability">
                         <p className="text-gray-300 leading-relaxed">
-                            Fast Website Spam Checker shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service.
+                            Free Spams Check shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service.
                         </p>
                     </Section>
 

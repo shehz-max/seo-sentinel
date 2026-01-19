@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: 'SEO Sentinel - Website Spam Checker',
-        short_name: 'SEO Sentinel',
+        name: 'Free Spams Check',
+        short_name: 'SpamsCheck',
         description: 'Advanced website spam detection and domain authority analysis. Protect your SEO rankings.',
         start_url: '/',
         display: 'standalone',

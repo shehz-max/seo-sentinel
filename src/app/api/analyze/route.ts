@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
         // 1. Fetch HTML from target
         const response = await fetch(targetUrl, {
             headers: {
-                "User-Agent": "Mozilla/5.0 (compatible; SEOSentinelBot/1.0; +https://seosentinel.com)"
+                "User-Agent": "Mozilla/5.0 (compatible; SpamsCheckBot/1.0; +https://spamscheck.com)"
             },
             next: { revalidate: 0 }
         });

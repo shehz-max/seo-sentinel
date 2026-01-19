@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
                 <div className="space-y-8">
                     <Section title="Introduction">
                         <p className="text-gray-300 leading-relaxed">
-                            At Free Spams Checker, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website spam checking service.
+                            At Free Spams Check, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website spam checking service.
                         </p>
                     </Section>
 

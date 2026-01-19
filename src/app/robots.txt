@@ -3,5 +3,6 @@ Allow: /
 Disallow: /dashboard
 Disallow: /login
 Disallow: /signup
+Disallow: /admin
 
-Sitemap: https://fastwebsitespamchecker.com/sitemap.xml
+Sitemap: https://spamscheck.com/sitemap.xml

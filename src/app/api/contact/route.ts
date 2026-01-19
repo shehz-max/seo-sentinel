@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
                         </div>
                     </div>
                     <div style="background-color: #f1f5f9; padding: 15px; text-align: center; color: #94a3b8; font-size: 12px;">
-                        This email was sent from the Spams Checker contact form.
+                        This email was sent from the Free Spams Check contact form.
                     </div>
                 </div>
             `,
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
         } else {
             // Fallback for development/demo if no credentials
             console.log("--- MOCK EMAIL SENT ---");
-            console.log(`To: support@seosentinel.com`);
+            console.log(`To: hyspam6@gmail.com`);
             console.log(`From: ${name} <${email}>`);
             console.log(`Message: ${message}`);
             console.log("-----------------------");

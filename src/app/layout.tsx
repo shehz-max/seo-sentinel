@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://fastwebsitespamchecker.com'),
+  metadataBase: new URL('https://spamscheck.com'),
   title: "Free Spams Check - Free Spam Score & DA Analysis",
   description: "Check any website's Spam Score and Domain Authority (DA) instantly. Free AI-powered SEO analysis, toxicity detection, and backlink audit tool.",
   keywords: ["spam score checker", "free spams checker", "check website spam", "domain authority checker", "da pa checker", "seo toxicity check", "google penalty checker", "website safety check"],
@@ -34,15 +34,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://fastwebsitespamchecker.com',
-    title: 'Free Spams Checker - Free Analysis',
+    url: 'https://spamscheck.com',
+    title: 'Free Spams Check - Free Analysis',
     description: 'Protect your rankings. Detect toxic SEO signals and check Domain Authority instantly.',
     siteName: 'Free Spams Check',
     images: [{
       url: '/og-image.png',
       width: 1200,
       height: 630,
-      alt: 'Free Spams Checker Dashboard'
+      alt: 'Free Spams Check Dashboard'
     }]
   },
   twitter: {

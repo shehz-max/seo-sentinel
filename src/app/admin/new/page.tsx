@@ -48,7 +48,7 @@ export default function NewPostPage() {
         try {
             await setDoc(doc(db, "posts", formData.slug), {
                 ...formData,
-                author: "SEO Sentinel Team",
+                author: "Free Spams Check Team",
                 publishedAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             });

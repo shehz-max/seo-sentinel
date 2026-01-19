@@ -54,7 +54,7 @@ function SignupContent() {
                         </div>
                     </Link>
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                        Join SEO Sentinel
+                        Join Free Spams Check
                     </h2>
                     <p className="mt-3 text-sm sm:text-base text-gray-400">
                         The first step to a safer, more authoritative domain.

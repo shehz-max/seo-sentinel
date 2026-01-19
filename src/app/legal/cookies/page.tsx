@@ -16,7 +16,7 @@ export default function CookiePolicy() {
 
                     <Section title="How We Use Cookies">
                         <p className="text-gray-300 leading-relaxed mb-4">
-                            SEO Sentinel uses cookies for the following purposes:
+                            Free Spams Check uses cookies for the following purposes:
                         </p>
                         <ul className="list-disc list-inside space-y-2 text-gray-300 ml-4">
                             <li><strong className="text-white">Authentication:</strong> To keep you logged in to your account</li>
@@ -51,13 +51,13 @@ export default function CookiePolicy() {
 
                     <Section title="Managing Cookies">
                         <p className="text-gray-300 leading-relaxed">
-                            You can control and manage cookies through your browser settings. However, please note that disabling cookies may affect the functionality of SEO Sentinel.
+                            You can control and manage cookies through your browser settings. However, please note that disabling cookies may affect the functionality of Free Spams Check.
                         </p>
                     </Section>
 
                     <Section title="Contact Us">
                         <p className="text-gray-300 leading-relaxed">
-                            If you have questions about our use of cookies, please contact us at support@seosentinel.com
+                            If you have questions about our use of cookies, please contact us at hyspam6@gmail.com
                         </p>
                     </Section>
                 </div>

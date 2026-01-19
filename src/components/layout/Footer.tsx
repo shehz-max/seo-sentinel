@@ -10,7 +10,7 @@ export default function Footer() {
                         <Link href="/" className="flex items-center gap-2 mb-6 group">
                             <ShieldCheck className="h-7 w-7 text-primary group-hover:scale-110 transition-transform" />
                             <span className="font-bold text-xl text-white tracking-tight">
-                                Free <span className="text-primary">Spams Checker</span>
+                                Free <span className="text-primary">Spams Check</span>
                             </span>
                         </Link>
                         <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
@@ -52,7 +52,7 @@ export default function Footer() {
 
                 <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
                     <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                        &copy; {new Date().getFullYear()} Spams Checker. All rights reserved.
+                        &copy; {new Date().getFullYear()} Free Spams Check. All rights reserved.
                     </p>
                     <div className="flex gap-4">
                         <SocialLink href="https://x.com/hyspam6" icon={<Twitter className="h-4 w-4" />} />
